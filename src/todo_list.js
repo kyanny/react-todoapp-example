@@ -8,7 +8,7 @@ var TodoList = React.createClass({
   addItem: function(value) {
     var items = this.state.items;
     items.push(value);
-    this.setState({iitems: items});
+    this.setState({items: items});
   },
 
   onDone: function(value) {
@@ -20,9 +20,13 @@ var TodoList = React.createClass({
     }.bind(this), 400);
   },
 
+  newKey: function() {
+    return Date.now() + Math.random();
+  },
+
   renderItems: function() {
     return this.state.items.map(function(value) {
-      return <TodoItem value={value} onDone={this.onDone} />
+      return <TodoItem value={value} onDone={this.onDone} key={this.newKey()} />
     }.bind(this));
   },
 
